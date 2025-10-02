@@ -17,7 +17,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/advanced-calculator.git
+git clone https://github.com/kirilt2/advanced-calculator.git
 cd advanced-calculator
 
 # Run the calculator
