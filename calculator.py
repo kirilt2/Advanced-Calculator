@@ -286,62 +286,67 @@ class CalculatorGUI:
         # Configure modern dark theme
         style.theme_use('clam')
         
-        # Configure button styles with modern colors
+        # Configure button styles with modern colors and better appearance
         style.configure('Number.TButton', 
-                       font=('Segoe UI', 14, 'bold'),
+                       font=('Segoe UI', 12, 'bold'),
                        background='#404040',
                        foreground='#ffffff',
-                       borderwidth=0,
+                       borderwidth=1,
+                       relief='raised',
                        focuscolor='none',
-                       padding=(10, 10))
+                       padding=(5, 5))
         
         style.map('Number.TButton',
                  background=[('active', '#505050'),
                            ('pressed', '#606060')])
         
         style.configure('Operator.TButton',
-                       font=('Segoe UI', 14, 'bold'),
+                       font=('Segoe UI', 12, 'bold'),
                        background='#ff6b35',
                        foreground='#ffffff',
-                       borderwidth=0,
+                       borderwidth=1,
+                       relief='raised',
                        focuscolor='none',
-                       padding=(10, 10))
+                       padding=(5, 5))
         
         style.map('Operator.TButton',
                  background=[('active', '#ff7b45'),
                            ('pressed', '#ff8b55')])
         
         style.configure('Function.TButton',
-                       font=('Segoe UI', 11, 'bold'),
+                       font=('Segoe UI', 9, 'bold'),
                        background='#4a90e2',
                        foreground='#ffffff',
-                       borderwidth=0,
+                       borderwidth=1,
+                       relief='raised',
                        focuscolor='none',
-                       padding=(8, 8))
+                       padding=(3, 3))
         
         style.map('Function.TButton',
                  background=[('active', '#5aa0f2'),
                            ('pressed', '#6ab0ff')])
         
         style.configure('Memory.TButton',
-                       font=('Segoe UI', 10, 'bold'),
+                       font=('Segoe UI', 8, 'bold'),
                        background='#7b68ee',
                        foreground='#ffffff',
-                       borderwidth=0,
+                       borderwidth=1,
+                       relief='raised',
                        focuscolor='none',
-                       padding=(6, 6))
+                       padding=(2, 2))
         
         style.map('Memory.TButton',
                  background=[('active', '#8b78fe'),
                            ('pressed', '#9b88ff')])
         
         style.configure('Equals.TButton',
-                       font=('Segoe UI', 16, 'bold'),
+                       font=('Segoe UI', 14, 'bold'),
                        background='#32cd32',
                        foreground='#ffffff',
-                       borderwidth=0,
+                       borderwidth=1,
+                       relief='raised',
                        focuscolor='none',
-                       padding=(10, 15))
+                       padding=(5, 8))
         
         style.map('Equals.TButton',
                  background=[('active', '#42dd42'),
@@ -417,74 +422,59 @@ class CalculatorGUI:
         button_frame = tk.Frame(parent, bg='#2b2b2b')
         button_frame.pack(fill=tk.BOTH, expand=True)
         
-        # Create button rows
-        self.create_button_row(button_frame, [
-            ("sin", lambda: self.add_function("sin("), "Function.TButton"),
-            ("cos", lambda: self.add_function("cos("), "Function.TButton"),
-            ("tan", lambda: self.add_function("tan("), "Function.TButton"),
-            ("log", lambda: self.add_function("log("), "Function.TButton"),
-            ("ln", lambda: self.add_function("ln("), "Function.TButton")
-        ])
+        # Configure grid weights for proper button sizing
+        for i in range(8):  # 8 rows
+            button_frame.grid_rowconfigure(i, weight=1)
+        for i in range(5):  # 5 columns
+            button_frame.grid_columnconfigure(i, weight=1)
         
-        self.create_button_row(button_frame, [
-            ("√", lambda: self.add_function("sqrt("), "Function.TButton"),
-            ("x²", lambda: self.add_function("^2"), "Function.TButton"),
-            ("x^y", lambda: self.add_function("^"), "Function.TButton"),
-            ("1/x", lambda: self.add_function("1/"), "Function.TButton"),
-            ("|x|", lambda: self.add_function("abs("), "Function.TButton")
-        ])
+        # Row 1: Advanced functions
+        ttk.Button(button_frame, text="sin", command=lambda: self.add_function("sin("), style='Function.TButton').grid(row=0, column=0, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="cos", command=lambda: self.add_function("cos("), style='Function.TButton').grid(row=0, column=1, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="tan", command=lambda: self.add_function("tan("), style='Function.TButton').grid(row=0, column=2, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="log", command=lambda: self.add_function("log("), style='Function.TButton').grid(row=0, column=3, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="ln", command=lambda: self.add_function("ln("), style='Function.TButton').grid(row=0, column=4, padx=5, pady=5, sticky='nsew')
         
-        self.create_button_row(button_frame, [
-            ("π", lambda: self.add_number("π"), "Function.TButton"),
-            ("e", lambda: self.add_number("e"), "Function.TButton"),
-            ("n!", lambda: self.add_function("factorial("), "Function.TButton"),
-            ("%", lambda: self.add_operator("%"), "Function.TButton"),
-            ("(", lambda: self.add_operator("("), "Function.TButton")
-        ])
+        # Row 2: More functions
+        ttk.Button(button_frame, text="√", command=lambda: self.add_function("sqrt("), style='Function.TButton').grid(row=1, column=0, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="x²", command=lambda: self.add_function("^2"), style='Function.TButton').grid(row=1, column=1, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="x^y", command=lambda: self.add_function("^"), style='Function.TButton').grid(row=1, column=2, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="1/x", command=lambda: self.add_function("1/"), style='Function.TButton').grid(row=1, column=3, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="|x|", command=lambda: self.add_function("abs("), style='Function.TButton').grid(row=1, column=4, padx=5, pady=5, sticky='nsew')
         
-        self.create_button_row(button_frame, [
-            ("7", lambda: self.add_number("7"), "Number.TButton"),
-            ("8", lambda: self.add_number("8"), "Number.TButton"),
-            ("9", lambda: self.add_number("9"), "Number.TButton"),
-            ("/", lambda: self.add_operator("/"), "Operator.TButton"),
-            (")", lambda: self.add_operator(")"), "Function.TButton")
-        ])
+        # Row 3: Constants and special
+        ttk.Button(button_frame, text="π", command=lambda: self.add_number("π"), style='Function.TButton').grid(row=2, column=0, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="e", command=lambda: self.add_number("e"), style='Function.TButton').grid(row=2, column=1, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="n!", command=lambda: self.add_function("factorial("), style='Function.TButton').grid(row=2, column=2, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="%", command=lambda: self.add_operator("%"), style='Function.TButton').grid(row=2, column=3, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="(", command=lambda: self.add_operator("("), style='Function.TButton').grid(row=2, column=4, padx=5, pady=5, sticky='nsew')
         
-        self.create_button_row(button_frame, [
-            ("4", lambda: self.add_number("4"), "Number.TButton"),
-            ("5", lambda: self.add_number("5"), "Number.TButton"),
-            ("6", lambda: self.add_number("6"), "Number.TButton"),
-            ("*", lambda: self.add_operator("*"), "Operator.TButton"),
-            ("±", self.toggle_sign, "Operator.TButton")
-        ])
+        # Row 4: Numbers and operators
+        ttk.Button(button_frame, text="7", command=lambda: self.add_number("7"), style='Number.TButton').grid(row=3, column=0, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="8", command=lambda: self.add_number("8"), style='Number.TButton').grid(row=3, column=1, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="9", command=lambda: self.add_number("9"), style='Number.TButton').grid(row=3, column=2, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="/", command=lambda: self.add_operator("/"), style='Operator.TButton').grid(row=3, column=3, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text=")", command=lambda: self.add_operator(")"), style='Function.TButton').grid(row=3, column=4, padx=5, pady=5, sticky='nsew')
         
-        self.create_button_row(button_frame, [
-            ("1", lambda: self.add_number("1"), "Number.TButton"),
-            ("2", lambda: self.add_number("2"), "Number.TButton"),
-            ("3", lambda: self.add_number("3"), "Number.TButton"),
-            ("-", lambda: self.add_operator("-"), "Operator.TButton"),
-            ("=", self.calculate, "Equals.TButton")
-        ])
+        # Row 5: Numbers and operators
+        ttk.Button(button_frame, text="4", command=lambda: self.add_number("4"), style='Number.TButton').grid(row=4, column=0, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="5", command=lambda: self.add_number("5"), style='Number.TButton').grid(row=4, column=1, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="6", command=lambda: self.add_number("6"), style='Number.TButton').grid(row=4, column=2, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="*", command=lambda: self.add_operator("*"), style='Operator.TButton').grid(row=4, column=3, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="±", command=self.toggle_sign, style='Operator.TButton').grid(row=4, column=4, padx=5, pady=5, sticky='nsew')
         
-        # Bottom row with wider 0 button
-        bottom_row = tk.Frame(button_frame, bg='#2b2b2b')
-        bottom_row.pack(fill=tk.X, pady=(0, 12))
+        # Row 6: Numbers and operators
+        ttk.Button(button_frame, text="1", command=lambda: self.add_number("1"), style='Number.TButton').grid(row=5, column=0, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="2", command=lambda: self.add_number("2"), style='Number.TButton').grid(row=5, column=1, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="3", command=lambda: self.add_number("3"), style='Number.TButton').grid(row=5, column=2, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="-", command=lambda: self.add_operator("-"), style='Operator.TButton').grid(row=5, column=3, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="=", command=self.calculate, style='Equals.TButton').grid(row=5, column=4, rowspan=2, padx=5, pady=5, sticky='nsew')
         
-        ttk.Button(bottom_row, text="0", command=lambda: self.add_number("0"), style='Number.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
-        ttk.Button(bottom_row, text="0", command=lambda: self.add_number("0"), style='Number.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
-        ttk.Button(bottom_row, text=".", command=self.add_decimal, style='Number.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
-        ttk.Button(bottom_row, text="+", command=lambda: self.add_operator("+"), style='Operator.TButton').pack(side=tk.LEFT, fill=tk.X, expand=True)
+        # Row 7: Bottom row
+        ttk.Button(button_frame, text="0", command=lambda: self.add_number("0"), style='Number.TButton').grid(row=6, column=0, columnspan=2, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text=".", command=self.add_decimal, style='Number.TButton').grid(row=6, column=2, padx=5, pady=5, sticky='nsew')
+        ttk.Button(button_frame, text="+", command=lambda: self.add_operator("+"), style='Operator.TButton').grid(row=6, column=3, padx=5, pady=5, sticky='nsew')
     
-    def create_button_row(self, parent, buttons):
-        """Create a row of buttons with consistent spacing."""
-        row_frame = tk.Frame(parent, bg='#2b2b2b')
-        row_frame.pack(fill=tk.X, pady=(0, 12))
-        
-        for i, (text, command, style) in enumerate(buttons):
-            if i < len(buttons) - 1:
-                ttk.Button(row_frame, text=text, command=command, style=style).pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
-            else:
-                ttk.Button(row_frame, text=text, command=command, style=style).pack(side=tk.LEFT, fill=tk.X, expand=True)
     
     def create_status_bar(self, parent):
         """Create status bar showing angle mode and memory indicator."""
