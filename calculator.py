@@ -350,23 +350,23 @@ class CalculatorGUI:
     def create_display_frame(self, parent):
         """Create the display area for expressions and results."""
         display_frame = tk.Frame(parent, bg='#2b2b2b')
-        display_frame.pack(fill=tk.X, pady=(0, 20))
+        display_frame.pack(fill=tk.X, pady=(0, 25))
         
         # Create rounded display container
         display_container = tk.Frame(display_frame, bg='#1a1a1a', relief='flat', bd=0)
-        display_container.pack(fill=tk.X, ipady=10)
+        display_container.pack(fill=tk.X, ipady=15)
         
         # Expression display (smaller, top)
         self.expression_var = tk.StringVar(value="")
         self.expression_display = tk.Label(
             display_container,
             textvariable=self.expression_var,
-            font=('Segoe UI', 12),
+            font=('Segoe UI', 14),
             fg='#888888',
             bg='#1a1a1a',
             anchor='e',
-            padx=20,
-            pady=10
+            padx=25,
+            pady=15
         )
         self.expression_display.pack(fill=tk.X)
         
@@ -375,12 +375,12 @@ class CalculatorGUI:
         self.result_display = tk.Label(
             display_container,
             textvariable=self.result_var,
-            font=('Segoe UI', 24, 'bold'),
+            font=('Segoe UI', 28, 'bold'),
             fg='#ffffff',
             bg='#1a1a1a',
             anchor='e',
-            padx=20,
-            pady=10
+            padx=25,
+            pady=15
         )
         self.result_display.pack(fill=tk.X)
         
