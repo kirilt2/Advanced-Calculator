@@ -387,29 +387,29 @@ class CalculatorGUI:
     def create_control_frame(self, parent):
         """Create control buttons (clear, memory, etc.)."""
         control_frame = tk.Frame(parent, bg='#2b2b2b')
-        control_frame.pack(fill=tk.X, pady=(0, 15))
+        control_frame.pack(fill=tk.X, pady=(0, 20))
         
         # First row of controls
         control_row1 = tk.Frame(control_frame, bg='#2b2b2b')
-        control_row1.pack(fill=tk.X, pady=(0, 8))
+        control_row1.pack(fill=tk.X, pady=(0, 10))
         
         # Clear buttons
-        ttk.Button(control_row1, text="C", command=self.clear_entry, style='Operator.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
-        ttk.Button(control_row1, text="AC", command=self.clear_all, style='Operator.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
-        ttk.Button(control_row1, text="DEL", command=self.backspace, style='Operator.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
+        ttk.Button(control_row1, text="C", command=self.clear_entry, style='Operator.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
+        ttk.Button(control_row1, text="AC", command=self.clear_all, style='Operator.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
+        ttk.Button(control_row1, text="DEL", command=self.backspace, style='Operator.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
         
         # Memory buttons
-        ttk.Button(control_row1, text="MS", command=self.memory_store, style='Memory.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
+        ttk.Button(control_row1, text="MS", command=self.memory_store, style='Memory.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
         ttk.Button(control_row1, text="MR", command=self.memory_recall, style='Memory.TButton').pack(side=tk.LEFT, fill=tk.X, expand=True)
         
         # Second row of controls
         control_row2 = tk.Frame(control_frame, bg='#2b2b2b')
         control_row2.pack(fill=tk.X)
         
-        ttk.Button(control_row2, text="MC", command=self.memory_clear, style='Memory.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
-        ttk.Button(control_row2, text="M+", command=self.memory_add, style='Memory.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
-        ttk.Button(control_row2, text="M-", command=self.memory_subtract, style='Memory.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
-        ttk.Button(control_row2, text="HIST", command=self.show_history, style='Function.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
+        ttk.Button(control_row2, text="MC", command=self.memory_clear, style='Memory.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
+        ttk.Button(control_row2, text="M+", command=self.memory_add, style='Memory.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
+        ttk.Button(control_row2, text="M-", command=self.memory_subtract, style='Memory.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
+        ttk.Button(control_row2, text="HIST", command=self.show_history, style='Function.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
         ttk.Button(control_row2, text="DEG/RAD", command=self.toggle_angle_mode, style='Function.TButton').pack(side=tk.LEFT, fill=tk.X, expand=True)
         
     def create_button_frame(self, parent):
@@ -468,21 +468,21 @@ class CalculatorGUI:
         
         # Bottom row with wider 0 button
         bottom_row = tk.Frame(button_frame, bg='#2b2b2b')
-        bottom_row.pack(fill=tk.X, pady=(0, 8))
+        bottom_row.pack(fill=tk.X, pady=(0, 12))
         
-        ttk.Button(bottom_row, text="0", command=lambda: self.add_number("0"), style='Number.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
-        ttk.Button(bottom_row, text="0", command=lambda: self.add_number("0"), style='Number.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
-        ttk.Button(bottom_row, text=".", command=self.add_decimal, style='Number.TButton').pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
+        ttk.Button(bottom_row, text="0", command=lambda: self.add_number("0"), style='Number.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
+        ttk.Button(bottom_row, text="0", command=lambda: self.add_number("0"), style='Number.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
+        ttk.Button(bottom_row, text=".", command=self.add_decimal, style='Number.TButton').pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
         ttk.Button(bottom_row, text="+", command=lambda: self.add_operator("+"), style='Operator.TButton').pack(side=tk.LEFT, fill=tk.X, expand=True)
     
     def create_button_row(self, parent, buttons):
         """Create a row of buttons with consistent spacing."""
         row_frame = tk.Frame(parent, bg='#2b2b2b')
-        row_frame.pack(fill=tk.X, pady=(0, 8))
+        row_frame.pack(fill=tk.X, pady=(0, 12))
         
         for i, (text, command, style) in enumerate(buttons):
             if i < len(buttons) - 1:
-                ttk.Button(row_frame, text=text, command=command, style=style).pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
+                ttk.Button(row_frame, text=text, command=command, style=style).pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
             else:
                 ttk.Button(row_frame, text=text, command=command, style=style).pack(side=tk.LEFT, fill=tk.X, expand=True)
     
