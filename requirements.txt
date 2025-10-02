@@ -1,0 +1,21 @@
+# Advanced Calculator Requirements
+# This calculator uses only Python standard library modules
+# No external dependencies required
+
+# Python version requirement
+# Python 3.7 or higher
+
+# Standard library modules used:
+# - tkinter (GUI framework)
+# - math (mathematical functions)
+# - decimal (high-precision arithmetic)
+# - re (regular expressions)
+# - logging (error logging)
+# - typing (type hints)
+# - unittest (testing framework)
+
+# Optional: For development and testing
+# - pytest (alternative testing framework)
+# - black (code formatting)
+# - flake8 (linting)
+# - mypy (type checking)
